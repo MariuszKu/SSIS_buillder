@@ -1,0 +1,62 @@
+declare @name varchar(max), @com varchar(max), @task   varchar(max)
+declare @res table (name varchar(max), dep varchar(max), [self] int)
+
+if object_id ('tempdb..#lista') is not null drop table #lista
+
+select 
+* 
+into #lista
+from (values 
+('dbo.importTostg','EXEC dbo.importTostg ?','Load data from source'),
+('dbo.importToFact','EXEC dbo.importToFact ?','Load to fact'),
+
+) as x (name,com, taks_name)
+
+
+declare k cursor for
+select  * from #lista
+
+OPEN k  
+  
+FETCH NEXT FROM k   
+INTO @name, @com, @task  
+  
+WHILE @@FETCH_STATUS = 0  
+BEGIN   
+
+
+	declare @t table (name varchar(128))
+
+	insert into @t
+	select distinct referenced_entity_name from sys.sql_expression_dependencies where referencing_id = object_id(@name)
+
+	
+	insert into @res
+	SELECT @name, QUOTENAME(OBJECT_SCHEMA_NAME(object_id)) + '.' + QUOTENAME(OBJECT_NAME(object_id)), case when object_id = object_id(@name) then 1 else 0 end [self]
+ 	FROM   sys.sql_dependencies
+	WHERE  referenced_major_id in (select OBJECT_ID(name) from @t)
+		   AND is_updated = 1
+		   and object_id in (select OBJECT_ID(name) from  #lista)
+	GROUP BY object_id 
+
+	delete from @t
+FETCH NEXT FROM k INTO  @name, @com, @task 
+END   
+CLOSE k;  
+DEALLOCATE k;  
+
+
+IF OBJECT_ID('TEMPDB..##dep') is not null drop table ##dep
+select * into ##dep from @res order by 1
+
+
+
+IF OBJECT_ID('TEMPDB..##dep2') is not null drop table ##dep2
+
+select 
+(select top 1 taks_name from #lista a where object_id(a.name) = object_id(w.name)) name,
+(select top 1 taks_name from #lista a1 where object_id(a1.name) = object_id(w.dep)) dep
+into ##dep2
+from ##dep w
+where
+self!=1

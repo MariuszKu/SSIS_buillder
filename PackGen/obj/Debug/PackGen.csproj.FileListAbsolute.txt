@@ -1,0 +1,11 @@
+c:\users\cognos\documents\visual studio 2015\Projects\PackGen\PackGen\obj\Debug\PackGen.csprojResolveAssemblyReference.cache
+c:\users\cognos\documents\visual studio 2015\Projects\PackGen\PackGen\bin\Debug\PackGen.exe.config
+c:\users\cognos\documents\visual studio 2015\Projects\PackGen\PackGen\bin\Debug\PackGen.exe
+c:\users\cognos\documents\visual studio 2015\Projects\PackGen\PackGen\bin\Debug\PackGen.pdb
+c:\users\cognos\documents\visual studio 2015\Projects\PackGen\PackGen\bin\Debug\Microsoft.SqlServer.ADONETSrc.dll
+c:\users\cognos\documents\visual studio 2015\Projects\PackGen\PackGen\bin\Debug\Microsoft.SQLServer.ManagedDTS.dll
+c:\users\cognos\documents\visual studio 2015\Projects\PackGen\PackGen\bin\Debug\Microsoft.SqlServer.PipelineHost.dll
+c:\users\cognos\documents\visual studio 2015\Projects\PackGen\PackGen\bin\Debug\Microsoft.SqlServer.SQLTask.dll
+c:\users\cognos\documents\visual studio 2015\Projects\PackGen\PackGen\bin\Debug\Microsoft.SqlServer.SQLTaskConnectionsWrap.dll
+c:\users\cognos\documents\visual studio 2015\Projects\PackGen\PackGen\obj\Debug\PackGen.exe
+c:\users\cognos\documents\visual studio 2015\Projects\PackGen\PackGen\obj\Debug\PackGen.pdb
